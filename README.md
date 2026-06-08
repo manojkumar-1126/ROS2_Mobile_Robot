@@ -1,1 +1,1 @@
-# Turtle_bot
+# Turtle_bot : Autonomous Obstacle Avoidance & SLAM Pipeline
