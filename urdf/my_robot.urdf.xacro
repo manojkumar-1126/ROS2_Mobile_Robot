@@ -1,0 +1,204 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_robot">
+
+<material name="grey">
+        <color rgba="0.8 0.8 0.8 1" />
+    </material>
+    <material name="blue">
+        <color rgba="0.1 0.24 0.4 1" />
+    </material>
+
+    <material name="orange">
+        <color rgba="0.75 0.08 0.25 1" />
+    </material>
+    
+
+    <!--.......................MAIN BODY............................-->
+
+     <xacro:include filename="gazebo.xacro" />
+
+    
+    <link name = "base_footprint"/>
+
+    <link name = "base_link">
+        <visual>
+            <origin xyz="0 0 0.1" rpy="0 0 0" />
+            <material name="blue" />
+            <geometry>
+                <box size="0.6 0.4 0.2" />
+            </geometry>
+        </visual>
+
+        <collision>
+            <geometry>
+                <box size="0.6 0.4 0.2" />
+            </geometry>
+            <origin xyz="0 0 0.1" rpy="0 0 0" />
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0.1" rpy="0 0 0" />
+            <mass value="2.0"/>
+            <inertia ixx="0.0333" iyy="0.0667" izz="0.0867"
+                     ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+    <link name="right_wheel_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0" />
+            <material name="grey" />
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius="0.1" length="0.05" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0" />
+            <surface>
+                <friction>
+                    <ode>
+                        <mu>1.0</mu>
+                        <mu2>1.0</mu2>
+                    </ode>
+                </friction>
+            </surface>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" rpy="1.57 0 0" />
+            <mass value="0.4"/>
+            <inertia ixx="0.00104" iyy="0.00104" izz="0.002" 
+                     ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+    <link name="left_wheel_link">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0" />
+            <material name="grey" />
+        </visual>
+
+        <collision>
+            <geometry>
+                <cylinder radius="0.1" length="0.05" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="1.57 0 0" />
+            <surface>
+                <friction>
+                    <ode>
+                        <mu>1.0</mu>
+                        <mu2>1.0</mu2>
+                    </ode>
+                </friction>
+            </surface>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" rpy="1.57 0 0" />
+            <mass value="0.4"/>
+            <inertia ixx="0.00104" iyy="0.00104" izz="0.002" 
+                     ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+    <link name="caster">
+        <visual>
+            <geometry>
+                <sphere radius="0.05" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <material name="grey" />
+        </visual>
+        <collision>
+            <geometry>
+                <sphere radius="0.05" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <surface>
+                <friction>
+                    <ode>
+                        <mu>0.01</mu>
+                        <mu2>0.01</mu2>
+                    </ode>
+                </friction> 
+            </surface>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0" />
+            <mass value="0.1"/>    
+            <inertia ixx="0.0001" iyy="0.0001" izz="0.0001"
+                     ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link> 
+
+
+    <link name="lidar">
+        <visual>
+            <geometry>
+                <cylinder radius="0.1" length="0.05" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <material name="orange" />
+        </visual>
+        <collision>
+            <geometry>
+                <cylinder radius="0.1" length="0.05" />
+            </geometry>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+        </collision>
+
+        <inertial>
+            <origin xyz="0 0 0" rpy="0 0 0"/>
+            <mass value="0.1"/>    
+            <inertia ixx="0.00026" iyy="0.00026" izz="0.0005"
+                     ixy="0.0" ixz="0.0" iyz="0.0"/>
+        </inertial>
+
+    </link>
+
+    <joint name="base_joint" type="fixed">
+        <parent link="base_footprint"/>
+        <child link="base_link"/>
+        <origin xyz="0 0 0.15" rpy="0 0 0" />
+    </joint>
+
+    <joint name="base_right_wheel_joint" type="continuous" >
+        <parent link="base_link" />
+        <child link="right_wheel_link" />
+        <origin xyz="-0.15 -0.225 0" rpy="0 0 0" />
+        <axis xyz="0 1 0"/>
+    </joint>
+
+    <joint name="base_left_wheel_joint" type="continuous">
+        <parent link="base_link" />
+        <child link="left_wheel_link" />
+        <origin xyz="-0.15 0.225 0" rpy="0 0 0" />
+        <axis xyz="0 1 0" />    
+    </joint>
+
+    <joint name="base_caster_link" type="continuous">
+        <parent link="base_link" />
+        <child link="caster"/>
+        <origin xyz="0.2 0 -0.05" rpy="0 0 0" />
+    </joint>
+
+    <joint name="base_lidar_link" type="fixed">
+        <parent link="base_link" />
+        <child link="lidar"/>
+        <origin xyz="0 0 0.225" rpy="0 0 0" />
+    </joint>
+
+</robot>  
+    

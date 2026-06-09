@@ -1,0 +1,76 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="my_robot">
+
+
+<!-- ................ SENSOR PLUGIN ........................ -->
+
+    <gazebo>
+      <!--  <plugin filename="ignition-gazebo-sensors-system" name="ignition::gazebo::systems::Sensors">
+            <render_engine>ogre2</render_engine>
+        </plugin> -->
+
+        <plugin filename="ignition-gazebo-joint-state-publisher-system" name="ignition::gazebo::systems::JointStatePublisher">
+        </plugin>
+        
+
+    <!-- .............Gazebo plugin for ROS Control............. -->
+        
+        <plugin filename="ignition-gazebo-diff-drive-system" name="ignition::gazebo::systems::DiffDrive">
+            <left_joint>base_left_wheel_joint</left_joint>
+            <right_joint>base_right_wheel_joint</right_joint>
+
+            <wheel_separation>0.5</wheel_separation>
+            <wheel_radius>0.1</wheel_radius>
+
+            <always_on>1</always_on>
+            <publish_odom_tf>true</publish_odom_tf>
+            <publish_wheel_tf>true</publish_wheel_tf>
+
+            <min_velocity>-1.0</min_velocity>
+            <max_velocity>1.0</max_velocity>
+
+            <odom_publish_frequency>30</odom_publish_frequency>
+            <topic>/cmd_vel</topic>
+
+            <odom_topic>/odom</odom_topic>
+            <tf_topic>/tf</tf_topic>
+            <frame_id>odom</frame_id>
+
+            <child_frame_id>base_footprint</child_frame_id>
+
+        </plugin>
+    </gazebo>
+
+    <!-- .....................2D LIDAR PLUGIN...................... -->
+    
+    <gazebo reference="lidar">
+        <sensor name="lidar_sensor" type="gpu_lidar">
+            <pose>0 0 0 0 0 0</pose>
+            <always_on>true</always_on>
+            <visualize>true</visualize>
+            <update_rate>10</update_rate>
+            <lidar>
+                <scan>
+                    <horizontal>
+                        <samples>360</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-3.14</min_angle>
+                        <max_angle>3.14</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <min>0.1</min>
+                    <max>12.0</max>
+                </range>
+                <noise>
+                    <type>gaussian</type>
+                    <mean>0.0</mean>
+                    <stddev>0.001</stddev>
+                </noise>
+            </lidar>
+             <topic>/scan</topic>
+            <gz_frame_id>lidar</gz_frame_id>
+        </sensor>
+    </gazebo>
+
+</robot>
