@@ -44,3 +44,6 @@ ros2 run my_robot_controller turtle_bot_node
 ```bash
 ros2 run rviz2 rviz2 --ros-args -p use_sim_time:=true
 ```
+## Conclusion
+
+This project proves that a robot can successfully think for itself, safely avoid walls, and create a 2D map inside a 3D world all at the same time using ROS2 Humble.
