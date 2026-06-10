@@ -24,23 +24,23 @@ source install/setup.bash
 
 #### Run each command in a separate terminal tab:
 
-* **Terminal 1 (Simulation Environment):
+* **Terminal 1 (Simulation Environment):**
 
 '''bash
 ros2 launch my_robot_controller gazebo.launch.py
-
-* **Terminal 2 (SLAM Mapping):
+'''
+* **Terminal 2 (SLAM Mapping):**
 
 '''bash
 ros2 launch slam_toolbox online_async_launch.py params_file:=./src/my_robot_controller/config/mapper_params_online_async.yaml use_sim_time:=true
-
-* **Terminal 3 (Collision Avoidance Node):
+'''
+* **Terminal 3 (Collision Avoidance Node):**
 
 '''bash
 ros2 run my_robot_controller turtle_bot_node
-
-* **Terminal 4 (RViz 2 Visualization):
+'''
+* **Terminal 4 (RViz 2 Visualization):**
 
 '''bash
 ros2 run rviz2 rviz2 --ros-args -p use_sim_time:=true
-
+'''
