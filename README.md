@@ -14,12 +14,12 @@ We built an autonomous robot that can explore a space on its own without bumping
 
 ### Build the workspace
 
-'''bash
+```bash
 cd ~/ros2_ws
 rm -rf build/ install/ log/
 colcon build --packages-select my_robot_controller
 source install/setup.bash
-
+```
 ### Execution Sequence
 
 #### Run each command in a separate terminal tab:
