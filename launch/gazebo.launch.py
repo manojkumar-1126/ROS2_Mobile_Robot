@@ -8,7 +8,7 @@ from launch.actions import AppendEnvironmentVariable, TimerAction
 def generate_launch_description():
 
     pkg_path = get_package_share_directory('my_robot_controller')
-    world_path = join(pkg_path, "worlds", "simple_world.sdf")
+    world_path = join(pkg_path, "worlds", "custom_world.sdf")
     
     gz_sim_share = get_package_share_directory("ros_gz_sim")
 
