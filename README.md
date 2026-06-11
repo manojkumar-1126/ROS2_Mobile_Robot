@@ -1,5 +1,5 @@
 # ROS2_Mobile_Robot : Autonomous Obstacle Avoidance & SLAM Pipeline
-[Screencast from 06-10-2026 08:37:18 AM.webm](https://github.com/user-attachments/assets/72e5fa92-98f5-4998-a1f8-129dee78c287)
+[Screencast from 06-11-2026 07:47:50 PM.webm](https://github.com/user-attachments/assets/956ff788-0d4e-4f78-a94b-fcbcde6ebd12)
 
 ## Humble + Ignition + Rviz2 (Ubuntu 22.04)
 
