@@ -21,7 +21,7 @@ class Turtlebot(Node):
         self.timer=self.create_timer(5.0,self.log_distance)
 
         self.safety_limit = 1.2 # meters
-        self.linear_speed = 0.2 # m/s
+        self.linear_speed = 0.5 # m/s
 
         self.get_logger().info(f'turtle bot with odometry initialized')
 
