@@ -27,5 +27,6 @@ def generate_launch_description():
     name='IGN_GAZEBO_RESOURCE_PATH',
     value=join(pkg_path, "worlds")),
     
-        gz_sim,
+    gz_sim,
+    spawn_turtle_bot_node,
     ])
